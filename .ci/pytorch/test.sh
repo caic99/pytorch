@@ -8,8 +8,13 @@ set -ex
 
 # Workaround for dind-rootless userid mapping (https://github.com/pytorch/ci-infra/issues/96)
 WORKSPACE_ORIGINAL_OWNER_ID=$(stat -c '%u' "/var/lib/jenkins/workspace")
+trap 'echo "sudo may print the following warning message that can be ignored. The chown command will still run."' EXIT
+trap 'echo "    sudo: setrlimit(RLIMIT_STACK): Operation not permitted"' EXIT
+trap 'echo "For more details refer to https://github.com/sudo-project/sudo/issues/42"' EXIT
+# Disable shellcheck SC2064 as we want to parse the original owner immediately.
+# shellcheck disable=SC2064
+trap "sudo chown -R \"$WORKSPACE_ORIGINAL_OWNER_ID\" /var/lib/jenkins/workspace" EXIT
 sudo chown -R jenkins /var/lib/jenkins/workspace
-trap "sudo chown -R $WORKSPACE_ORIGINAL_OWNER_ID /var/lib/jenkins/workspace" EXIT
 git config --global --add safe.directory /var/lib/jenkins/workspace
 
 echo "Environment variables:"
