@@ -816,21 +816,21 @@ class ONNXProgram:
             >>> print(onnx_program.model_signature)
             ExportGraphSignature(
                 input_specs=[
-                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='arg0_1'),
+                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='p_conv1_weight'),
                               target='conv1.weight', persistent=None),
-                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='arg1_1'),
+                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='p_conv2_weight'),
                               target='conv2.weight', persistent=None),
-                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='arg2_1'),
+                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='p_fc1_weight'),
                               target='fc1.weight', persistent=None),
-                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='arg3_1'),
+                    InputSpec(kind=<InputKind.PARAMETER: 2>, arg=TensorArgument(name='p_fc2_weight'),
                               target='fc2.weight', persistent=None),
-                    InputSpec(kind=<InputKind.BUFFER: 3>, arg=TensorArgument(name='arg4_1'),
+                    InputSpec(kind=<InputKind.BUFFER: 3>, arg=TensorArgument(name='b_my_buffer2'),
                               target='my_buffer2', persistent=True),
-                    InputSpec(kind=<InputKind.BUFFER: 3>, arg=TensorArgument(name='arg5_1'),
+                    InputSpec(kind=<InputKind.BUFFER: 3>, arg=TensorArgument(name='b_my_buffer1'),
                               target='my_buffer1', persistent=True),
-                    InputSpec(kind=<InputKind.USER_INPUT: 1>, arg=TensorArgument(name='arg6_1'),
+                    InputSpec(kind=<InputKind.USER_INPUT: 1>, arg=TensorArgument(name='b'),
                               target=None, persistent=None),
-                    InputSpec(kind=<InputKind.USER_INPUT: 1>, arg=TensorArgument(name='arg7_1'),
+                    InputSpec(kind=<InputKind.USER_INPUT: 1>, arg=TensorArgument(name='add'),
                               target=None, persistent=None)
                 ],
                 output_specs=[
