@@ -243,7 +243,7 @@ class FSDPParamGroup:
             self._all_gather_result, self.fsdp_params, self._all_gather_process_group
         )
         for fsdp_param in self.fsdp_params:
-            fsdp_param.init_unsharded_param()  # no-op after 1st call
+            fsdp_param.init_unsharded_param()
         self._to_unsharded()
         all_gather_copy_out_event = torch.cuda.Event()
         all_gather_copy_out_event.record()
@@ -270,6 +270,7 @@ class FSDPParamGroup:
                 return
         self._to_sharded()
 
+    @torch.compiler.disable()
     def pre_forward(
         self, module: nn.Module, args: Tuple[Any, ...], kwargs: Dict[str, Any]
     ) -> Tuple[Tuple[Any, ...], Dict[str, Any]]:
