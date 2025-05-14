@@ -167,8 +167,8 @@ class RandomSampler(Sampler[int]):
     def __iter__(self) -> Iterator[int]:
         n = len(self.data_source)
         if self.generator is None:
-            seed = int(torch.empty((), dtype=torch.int64).random_().item())
             generator = torch.Generator()
+            seed = int(torch.empty((), dtype=torch.int64, device=generator.device).random_().item())
             generator.manual_seed(seed)
         else:
             generator = self.generator
